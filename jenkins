@@ -1,38 +1,29 @@
-pipeline 
-{
-agent any 
-stages 
-{
-stage('Clean') 
-{
-steps 
-{
-echo "Cleaning"
-bat "mvn clean"
-}
-}
-stage('Build') 
-{
-steps 
-{
-echo "Building "
-bat "mvn build"
-}
-}
-stage('Test') 
-{
-steps 
-{
-echo "Testing"
-bat "mvn test"
-}
-}
-stage('Deploy') 
-{
-steps 
-{
-echo "Deploy"
-bat "mvn install"
-}
-} 
+pipeline {
+    agent any
+    stages {
+       stage('Clean') {
+                  steps {
+                      echo "Cleaning the code .........."
+                      bat "mvn clean"
+                  }
+              }
+        stage('Build') {
+            steps {
+               echo "Building the code .........."
+                      bat "mvn compile"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Testing the code .........."
+                      bat "mvn test"
+            }
+        }
+        stage('Deploy') {
+            steps {
+               echo "Deploying the code .........."
+                      bat "mvn install"
+            }
+        }
+    }
 }
